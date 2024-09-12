@@ -328,12 +328,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _yAnimation:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: -0.00033140182
+      outSlope: -0.00033140182
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99999994
+      value: -0.00033125537
+      inSlope: -2.061357
+      outSlope: -2.061357
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _height: 0
-  _duration: 0
+  _height: 2
+  _duration: 1
 --- !u!1 &1746072595
 GameObject:
   m_ObjectHideFlags: 0

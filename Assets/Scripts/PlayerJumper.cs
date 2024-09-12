@@ -7,11 +7,14 @@ public class PlayerJumper : MonoBehaviour
     [SerializeField] private float _height;
     [SerializeField] private float _duration;
 
+    private bool _isJumping = false;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _isJumping == false)
         {
             StartCoroutine(JumpByTime(_duration, _height));
+            _isJumping = true;
         }
 
     }
@@ -30,8 +33,10 @@ public class PlayerJumper : MonoBehaviour
             progress = expiredSeconds / duration;
 
             transform.position = startPosition + new Vector3(0f, _yAnimation.Evaluate(progress) * height, 0f);
-            
+
             yield return null;
         }
+
+        _isJumping = false;
     }
 }
