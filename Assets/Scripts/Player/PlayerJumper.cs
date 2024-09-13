@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerJumper : MonoBehaviour
 {
     [SerializeField] private float _force;
-    [SerializeField] private Raycaster _raycaster;
+    [SerializeField] private GroundDetector _groundDetector;
 
     private Rigidbody2D _rigidbody;
 
@@ -30,6 +30,6 @@ public class PlayerJumper : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return _raycaster.IsGrounded(transform);
+        return _groundDetector.IsGrounded(transform);
     }
 }

@@ -12,4 +12,9 @@ public class PlayerMover : MonoBehaviour
 
         transform.Translate(direction * _speed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Trigger");
+    }
 }
