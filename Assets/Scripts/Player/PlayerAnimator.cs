@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover))]
 public class PlayerAnimator : MonoBehaviour
 {
-    const string Speed = "Speed";
+    const string SpeedParametr = "Speed";
 
     private Animator _animator;
     private PlayerMover _mover;
@@ -27,6 +27,6 @@ public class PlayerAnimator : MonoBehaviour
 
     private void SetSpeed(float speed)
     {
-        _animator.SetFloat(Speed, Mathf.Abs(speed));
+        _animator.SetFloat(SpeedParametr, Mathf.Abs(speed));
     }
 }

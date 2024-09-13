@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
+public class EnemyPatroler : MonoBehaviour
 {
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _delay = 5f;
 
     private float _currentSpeed;
+
+    public event Action<float> Moved;
 
     private void Start()
     {
@@ -15,6 +18,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        Moved?.Invoke(_currentSpeed);
         transform.Translate(Vector3.left * _currentSpeed * Time.deltaTime);
     }
 
