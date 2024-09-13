@@ -1,46 +1,35 @@
-using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerJumper : MonoBehaviour
 {
-    [SerializeField] private AnimationCurve _yAnimation;
-    [SerializeField] private float _height;
-    [SerializeField] private float _duration;
+    [SerializeField] private float _force;
+    [SerializeField] private Raycaster _raycaster;
 
-    private bool _isJumping = false;
+    private Rigidbody2D _rigidbody;
 
-    private void Update()
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    private void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.Space))
+            TryJump();
+    }
+
+    private void TryJump()
+    {
+        if (IsGrounded())
         {
-            if (_isJumping == false)
-            {
-                StartCoroutine(JumpByTime(_duration, _height));
-                _isJumping = true;
-            }
+            _rigidbody.AddForce(new Vector2(0f, _force), ForceMode2D.Impulse);
         }
 
     }
 
-    private IEnumerator JumpByTime(float duration, float height)
+    private bool IsGrounded()
     {
-        float expiredSeconds = 0f;
-        float progress = 0f;
-        float maxProgress = 1f;
-
-        Vector3 previousPosition = new Vector3(0f, transform.position.y, 0f);
-
-        while (progress < maxProgress)
-        {
-            expiredSeconds += Time.deltaTime;
-            progress = expiredSeconds / duration;
-
-            transform.Translate(new Vector3(0f, _yAnimation.Evaluate(progress) * height, 0f) - previousPosition);
-            previousPosition = new Vector3(0f, _yAnimation.Evaluate(progress) * height, 0f);
-
-            yield return null;
-        }
-
-        _isJumping = false;
+        return _raycaster.IsGrounded(transform);
     }
 }

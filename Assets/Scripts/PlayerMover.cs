@@ -6,7 +6,7 @@ public class PlayerMover : MonoBehaviour
 
     [SerializeField] private float _speed;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 direction = new Vector3(Input.GetAxisRaw(Horizontal), 0f, 0f);
 
