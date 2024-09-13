@@ -27,11 +27,13 @@ public class EnemyPatrol : MonoBehaviour
 
     private IEnumerator CountPatrolDelay(float delay)
     {
+        Vector3 rotation = new Vector3(0f, 180f, 0f);
+
         _currentSpeed = 0;
 
         yield return new WaitForSeconds(delay);
 
-        transform.Rotate(0, 180, 0);
+        transform.Rotate(rotation);
         _currentSpeed = _speed;
     }
 }
