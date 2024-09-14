@@ -24,15 +24,10 @@ public class PlayerJumper : MonoBehaviour
 
     private void TryJump()
     {
-        if (IsGrounded())
+        if (_groundDetector.IsGrounded(transform))
         {
             _rigidbody.AddForce(new Vector2(0f, _force), ForceMode2D.Impulse);
         }
 
-    }
-
-    private bool IsGrounded()
-    {
-        return _groundDetector.IsGrounded(transform);
     }
 }

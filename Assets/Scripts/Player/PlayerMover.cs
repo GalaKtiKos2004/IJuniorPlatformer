@@ -10,6 +10,9 @@ public class PlayerMover : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private PlayerInput _playerInput;
 
+    private Quaternion _rightAngle = Quaternion.Euler(Vector3.zero);
+    private Quaternion _leftAngle = Quaternion.Euler(0f, 180f, 0f);
+
     public event Action <float> Moved;
 
     private void Awake()
@@ -29,12 +32,11 @@ public class PlayerMover : MonoBehaviour
 
     private void Rotate(float direction)
     {
-        Quaternion rightAngle = Quaternion.Euler(Vector3.zero);
-        Quaternion leftAngle = Quaternion.Euler(0f, 180f, 0f);
+        
 
         if (direction > 0)
-            transform.rotation = rightAngle;
+            transform.rotation = _rightAngle;
         else if (direction < 0)
-            transform.rotation = leftAngle;
+            transform.rotation = _leftAngle;
     }
 }
