@@ -11,14 +11,9 @@ public class DeathChecker : MonoBehaviour
         _startPosition = transform.position;
     }
 
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IsDeath())
+        if (collision.TryGetComponent(out DeathTrigger trigger))
             transform.position = _startPosition;
-    }
-
-    private bool IsDeath()
-    {
-        return transform.position.y < _minPositionY;
     }
 }
