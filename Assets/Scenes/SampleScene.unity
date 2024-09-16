@@ -2396,14 +2396,14 @@ PrefabInstance:
     - target: {fileID: 1214342930913752821, guid: 0188401b33df98e47b796a6d8fd772e1, type: 3}
       propertyPath: _waypoints.Array.data[0]
       value: 
-      objectReference: {fileID: 435901199}
+      objectReference: {fileID: 906608204}
     - target: {fileID: 1214342930913752821, guid: 0188401b33df98e47b796a6d8fd772e1, type: 3}
       propertyPath: _waypoints.Array.data[1]
       value: 
-      objectReference: {fileID: 906608204}
+      objectReference: {fileID: 435901199}
     - target: {fileID: 7449758591198188247, guid: 0188401b33df98e47b796a6d8fd772e1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.818527
+      value: 45.72
       objectReference: {fileID: 0}
     - target: {fileID: 7449758591198188247, guid: 0188401b33df98e47b796a6d8fd772e1, type: 3}
       propertyPath: m_LocalPosition.y
