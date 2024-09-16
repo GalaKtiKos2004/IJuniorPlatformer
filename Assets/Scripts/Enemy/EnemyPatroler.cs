@@ -1,14 +1,18 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPatroler : MonoBehaviour
 {
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _delay = 5f;
+    [SerializeField] private List<Transform> _waypoints;
+
+    private int _currentWaypoint = 0;
 
     private WaitForSeconds _wait;
-    
+
     private float _currentSpeed;
 
     public event Action<float> Moved;
@@ -22,13 +26,21 @@ public class EnemyPatroler : MonoBehaviour
     private void Update()
     {
         Moved?.Invoke(_currentSpeed);
-        transform.Translate(Vector3.left * _currentSpeed * Time.deltaTime);
-    }
+        transform.position = new Vector3(
+            Mathf.MoveTowards(transform.position.x, _waypoints[_currentWaypoint].position.x, _currentSpeed * Time.deltaTime),
+            transform.position.y, transform.position.z);
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent(out PatrolBorder border))
-            StartCoroutine(CountPatrolDelay());
+        if (transform.position.x == _waypoints[_currentWaypoint].position.x)
+        {
+            if (_currentWaypoint == _waypoints.Count - 1)
+            {
+                StartCoroutine(CountPatrolDelay());
+            }
+            else
+            {
+                _currentWaypoint++;
+            }
+        }
     }
 
     private IEnumerator CountPatrolDelay()
@@ -36,6 +48,9 @@ public class EnemyPatroler : MonoBehaviour
         Vector3 rotation = new Vector3(0f, 180f, 0f);
 
         _currentSpeed = 0;
+
+        _waypoints.Reverse();
+        _currentWaypoint = 0;
 
         yield return _wait;
 
