@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent (typeof(PlayerInput))]
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : MonoBehaviour, IMovable
 {
     [SerializeField] private float _speed;
 
@@ -23,6 +23,12 @@ public class PlayerMover : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Move();
+        
+    }
+
+    private void Move()
+    {
         Vector2 direction = new Vector2(_playerInput.MoveInput * _speed, _rigidbody.velocity.y);
 
         Rotate(direction.x);
@@ -32,8 +38,6 @@ public class PlayerMover : MonoBehaviour
 
     private void Rotate(float direction)
     {
-        
-
         if (direction > 0)
             transform.rotation = _rightAngle;
         else if (direction < 0)

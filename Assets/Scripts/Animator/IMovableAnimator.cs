@@ -1,18 +1,18 @@
 using UnityEngine;
 
+[RequireComponent(typeof(IMovable))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(PlayerMover))]
-public class PlayerAnimator : MonoBehaviour
+public class IMovableAnimator : MonoBehaviour
 {
     const string SpeedParametr = "Speed";
 
     private Animator _animator;
-    private PlayerMover _mover;
+    private IMovable _mover;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _mover = GetComponent<PlayerMover>();
+        _mover = GetComponent<IMovable>();
     }
 
     private void OnEnable()

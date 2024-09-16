@@ -6,10 +6,4 @@ public class Wallet
     {
         _money++;
     }
-
-    public void TrySpendMoney(uint money)
-    {
-        if (money < _money) 
-            _money -= money;
-    }
 }

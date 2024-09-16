@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatroler : MonoBehaviour
+public class EnemyPatroler : MonoBehaviour, IMovable
 {
     [SerializeField] private float _speed = 3f;
     [SerializeField] private float _delay = 5f;
@@ -25,10 +25,7 @@ public class EnemyPatroler : MonoBehaviour
 
     private void Update()
     {
-        Moved?.Invoke(_currentSpeed);
-        transform.position = new Vector3(
-            Mathf.MoveTowards(transform.position.x, _waypoints[_currentWaypoint].position.x, _currentSpeed * Time.deltaTime),
-            transform.position.y, transform.position.z);
+        Move();
 
         if (transform.position.x == _waypoints[_currentWaypoint].position.x)
         {
@@ -41,6 +38,14 @@ public class EnemyPatroler : MonoBehaviour
                 _currentWaypoint++;
             }
         }
+    }
+
+    private void Move()
+    {
+        Moved?.Invoke(_currentSpeed);
+        transform.position = new Vector3(
+            Mathf.MoveTowards(transform.position.x, _waypoints[_currentWaypoint].position.x, _currentSpeed * Time.deltaTime),
+            transform.position.y, transform.position.z);
     }
 
     private IEnumerator CountPatrolDelay()

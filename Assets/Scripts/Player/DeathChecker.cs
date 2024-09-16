@@ -11,7 +11,7 @@ public class DeathChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out DeathTrigger trigger))
+        if (collision.TryGetComponent<DeathTrigger>(out _))
             transform.position = _startPosition;
     }
 }
